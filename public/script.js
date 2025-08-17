@@ -376,6 +376,13 @@ document.querySelectorAll('[data-action="get-in-touch"], .get-in-touch-btn').for
     btn.addEventListener('click', openGetInTouch);
 });
 
+// Phone number validation - only allow numbers
+document.addEventListener('input', (e) => {
+    if (e.target.type === 'tel' || e.target.placeholder.toLowerCase().includes('phone')) {
+        e.target.value = e.target.value.replace(/[^0-9+\-\s()]/g, '');
+    }
+});
+
 // Auto-close maintenance modal
 setTimeout(() => {
     const maintenanceModal = document.getElementById('maintenanceModal');
