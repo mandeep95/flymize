@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modal Test</title>
+    <style>
+        .test-btn {
+            padding: 10px 20px;
+            background: #a855f7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 20px;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 10000;
+            left: 0;
+            top: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            display: block;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <button class="test-btn" onclick="testModal()">Test Modal Open</button>
+    <button class="test-btn" onclick="checkElements()">Check Elements</button>
+    
+    <div id="contactModal" class="modal">
+        <div style="padding: 50px; text-align: center;">
+            <h2>Modal is Working!</h2>
+            <button onclick="closeModal()">Close Modal</button>
+        </div>
+    </div>
+
+    <script>
+        function testModal() {
+            const modal = document.getElementById('contactModal');
+            console.log('Modal element:', modal);
+            if (modal) {
+                modal.classList.add('active');
+                console.log('Modal should be visible now');
+            } else {
+                console.log('Modal element not found');
+            }
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('contactModal');
+            modal.classList.remove('active');
+        }
+        
+        function checkElements() {
+            const scheduleBtn = document.getElementById('scheduleCallBtn');
+            const chatBtn = document.getElementById('chatWithExperts');
+            const modal = document.getElementById('contactModal');
+            
+            console.log('Schedule button:', scheduleBtn);
+            console.log('Chat button:', chatBtn);
+            console.log('Modal:', modal);
+            
+            if (scheduleBtn) {
+                console.log('Schedule button found, adding test click listener');
+                scheduleBtn.addEventListener('click', () => {
+                    console.log('Schedule button clicked!');
+                    testModal();
+                });
+            }
+        }
+        
+        // Run check on page load
+        document.addEventListener('DOMContentLoaded', checkElements);
+    </script>
+</body>
+</html>

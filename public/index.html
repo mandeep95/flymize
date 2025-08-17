@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flymize - Web Solutions & Account Management</title>
+    <meta name="description" content="Flymize provides professional web development solutions and comprehensive account management services for businesses.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Flymize</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>All-in-One Business Solutions</h1>
+                <p>Complete digital services from marketing to web development - everything your business needs to succeed</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn-primary">Start Your Journey</a>
+                    <a href="#contact" class="btn-secondary">Get Free Consultation</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave">
+            <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="#f8fafc"></path>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="services-bg">
+            <div class="container">
+                <div class="services-header">
+                    <div class="new-badge">NEW!</div>
+                    <h2 >Our Services</h2>
+                </div>
+                <div class="services-list">
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z" fill="white"/>
+                                <rect x="2" y="20" width="20" height="2" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Strategic Marketing</h3>
+                            <p>Catapult your brand into the spotlight with our genius strategies – it's like magic, but for marketing.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <path d="M12 2l.09.06c.18.14.37.29.55.46L17 7v10c0 .55-.45 1-1 1H8c-.55 0-1-.45-1-1V7l4.36-4.48c.18-.17.37-.32.55-.46L12 2z" fill="white"/>
+                                <path d="M9 9h6v2H9V9zm0 4h6v2H9v-2z" fill="#a855f7"/>
+                                <circle cx="18" cy="6" r="3" fill="white"/>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Creative Design</h3>
+                            <p>Picture-perfect branding and graphics – we make your competitors jealous, and your audience adore you.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="12" cy="12" r="3" fill="white"/>
+                                <path d="M12 1v6m0 10v6m11-7h-6m-10 0H1m15.5-6.5l-4.24 4.24m-8.48 0L7.5 5.5m12.73 12.73l-4.24-4.24m-8.48 0l4.24 4.24" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Social Media Management</h3>
+                            <p>Hands-free social success! While you focus on your cat videos, we'll make sure your brand shines across all social platforms.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="3" y="4" width="18" height="12" rx="2" fill="white"/>
+                                <path d="M7 8h10v2H7V8zm0 4h6v2H7v-2z" fill="#a855f7"/>
+                                <circle cx="19" cy="19" r="3" fill="white"/>
+                                <path d="M17.5 19l1 1 2-2" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Technical Solutions</h3>
+                            <p>From tech wizardry to seamless online experiences, we turn digital hiccups into high-fives for your users.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <circle cx="11" cy="11" r="8" fill="none" stroke="white" stroke-width="2"/>
+                                <path d="m21 21-4.35-4.35" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <path d="M8 11h6M11 8v6" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Search Engine Optimization (SEO)</h3>
+                            <p>Boost your online swagger! We'll spruce up your website so Google has no choice but to be your biggest fan.</p>
+                        </div>
+                    </div>
+                    <div class="service-item">
+                        <div class="service-icon">
+                            <svg viewBox="0 0 24 24" fill="none">
+                                <rect x="4" y="4" width="16" height="12" rx="2" fill="white"/>
+                                <path d="M8 9l4 4 4-4" stroke="#a855f7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                <circle cx="18" cy="18" r="3" fill="white"/>
+                                <path d="M16.5 18l1 1 2-2" stroke="#a855f7" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                        </div>
+                        <div class="service-content">
+                            <h3>Automation Services</h3>
+                            <p>Automatically enhance efficiency! Our automation tricks make your processes smoother than a freshly buttered slide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Section -->
+    <section id="comparison" class="comparison">
+        <div class="container">
+            <div class="comparison-header">
+                <div class="special-badge">SPECIAL • SPECIAL • SPECIAL</div>
+                <h2>What makes us unique?</h2>
+                <p class="comparison-subtitle">Flymize V/S Others</p>
+            </div>
+            <div class="comparison-content">
+                <div class="comparison-columns">
+                    <div class="others-column">
+                        <h3>OTHERS</h3>
+                        <div class="comparison-item negative">
+                            <span class="icon"><i class="fas fa-times"></i></span>
+                            <span>Longer turnaround time</span>
+                        </div>
+                        <div class="comparison-item negative">
+                            <span class="icon"><i class="fas fa-times"></i></span>
+                            <span>Mediocre methods</span>
+                        </div>
+                        <div class="comparison-item negative">
+                            <span class="icon"><i class="fas fa-times"></i></span>
+                            <span>Lack of timely reporting</span>
+                        </div>
+                        <div class="comparison-item negative">
+                            <span class="icon"><i class="fas fa-times"></i></span>
+                            <span>No prompt answers</span>
+                        </div>
+                    </div>
+                    <div class="flymize-column">
+                        <h3>FLYMIZE</h3>
+                        <div class="comparison-item positive">
+                            <span class="icon"><i class="fas fa-check"></i></span>
+                            <span>Faster and quick responses</span>
+                        </div>
+                        <div class="comparison-item positive">
+                            <span class="icon"><i class="fas fa-check"></i></span>
+                            <span>Ethical Approach</span>
+                        </div>
+                        <div class="comparison-item positive">
+                            <span class="icon"><i class="fas fa-check"></i></span>
+                            <span>Accurate Reporting</span>
+                        </div>
+                        <div class="comparison-item positive">
+                            <span class="icon"><i class="fas fa-check"></i></span>
+                            <span>Precise Resolutions</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="services-cta" id="chatWithExperts" onclick="document.getElementById('contactModal').classList.add('active'); document.body.style.overflow='hidden';">
+                    <p>Want to discuss <span class="chat-link">Let's Schedule a Call</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="divider">
+        <div class="container">
+            <hr>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <div class="process-header">
+                <div class="process-badge">ONBOARDING • ONBOARDING • ONBOARDING</div>
+                <h2>How it starts?</h2>
+            </div>
+            <div class="process-content">
+                <div class="process-steps">
+                    <div class="process-step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Plan Your Growth</h3>
+                            <p>Dream big, strategize with us, and turn plans into profits.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Handover the project</h3>
+                            <p>We're your project navigators, turning plans into reality. Smooth sailing guaranteed.</p>
+                        </div>
+                    </div>
+                    <div class="process-step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Count the profit</h3>
+                            <p>Sit back, relax, and let the profits set sail. Your success story starts with us!</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="process-visual">
+                    <div class="dashboard-mockup">
+                        <svg viewBox="0 0 400 300" class="dashboard-svg">
+                            <rect x="20" y="20" width="360" height="260" rx="16" fill="#ffffff" stroke="#e5e7eb" stroke-width="2"/>
+                            <rect x="30" y="30" width="340" height="40" rx="8" fill="#f9fafb"/>
+                            <text x="40" y="50" font-family="Inter" font-size="14" font-weight="600" fill="#374151">Daily Payments</text>
+                            <rect x="320" y="35" width="40" height="20" rx="4" fill="#1f2937"/>
+                            <text x="330" y="47" font-family="Inter" font-size="10" fill="#ffffff">Publish</text>
+                            <rect x="280" y="120" width="80" height="40" rx="8" fill="#1f2937"/>
+                            <text x="290" y="135" font-family="Inter" font-size="10" fill="#ffffff">Avg: 3K</text>
+                            <text x="290" y="150" font-family="Inter" font-size="8" fill="#9ca3af">Date: Jul 18</text>
+                            <rect x="50" y="180" width="12" height="60" rx="6" fill="#a855f7"/>
+                            <rect x="80" y="200" width="12" height="40" rx="6" fill="#a855f7"/>
+                            <rect x="110" y="160" width="12" height="80" rx="6" fill="#a855f7"/>
+                            <rect x="140" y="190" width="12" height="50" rx="6" fill="#a855f7"/>
+                            <rect x="170" y="140" width="12" height="100" rx="6" fill="#a855f7"/>
+                            <rect x="200" y="170" width="12" height="70" rx="6" fill="#a855f7"/>
+                            <text x="50" y="260" font-family="Inter" font-size="10" fill="#9ca3af">20</text>
+                            <text x="80" y="260" font-family="Inter" font-size="10" fill="#9ca3af">30</text>
+                            <text x="110" y="260" font-family="Inter" font-size="10" fill="#9ca3af">35</text>
+                            <text x="140" y="260" font-family="Inter" font-size="10" fill="#9ca3af">40</text>
+                            <text x="170" y="260" font-family="Inter" font-size="10" fill="#9ca3af">45</text>
+                            <text x="200" y="260" font-family="Inter" font-size="10" fill="#9ca3af">50+</text>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="faq-header">
+                <h2>Need Help? </h2>
+            </div>
+            <div class="faq-content">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Why should I choose Flymize over other agencies?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Flymize offers faster turnaround times, ethical approaches, accurate reporting, and precise resolutions. We focus on delivering results that matter to your business growth.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What sets Flymize apart from the competition?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Our unique combination of quick responses, ethical practices, and commitment to accurate reporting makes us stand out in the digital marketing landscape.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How can Flymize guarantee accurate reporting?</span>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We use advanced analytics tools and maintain transparent communication throughout your project, ensuring you receive detailed and accurate reports on your campaign performance.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    
+                </div>
+                <div class="about-text">
+                    <h2>About Flymize</h2>
+                    <p>We help you achieve business goals through effective digital marketing strategies and modern web solutions that drive real results.</p>
+                    <div class="stats">
+                        <div class="stat">
+                            <h3>150+</h3>
+                            <p>Happy Clients</p>
+                        </div>
+                        <div class="stat">
+                            <h3>98%</h3>
+                            <p>Success Rate</p>
+                        </div>
+                        <div class="stat">
+                            <h3>24/7</h3>
+                            <p>Support</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="contact-bg">
+            <div class="container">
+                <div class="contact-header">
+                    <div class="contact-badge">CONTACT • CONTACT • CONTACT</div>
+                    <h2>Get In Touch</h2>
+                    <p class="section-subtitle">Ready to transform your business? Let's create something amazing together</p>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-cards">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h4>Email Us</h4>
+                            <p>hello@flymize.com</p>
+                            <span class="contact-label">Drop us a line anytime</span>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <h4>Call Us</h4>
+                            <p>+1 (555) 123-4567</p>
+                            <span class="contact-label">Mon-Fri 9AM-6PM</span>
+                        </div>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <h4>Visit Us</h4>
+                            <p>New York, NY</p>
+                            <a href="https://share.google/QLRHnURSTLrFgbC6a" target="_blank" class="contact-label">Get Directions</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-main">
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section brand">
+                        <h3>Flymize</h3>
+                        <p>All-in-one business solutions for modern companies</p>
+                        <div class="social-links">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                        </div>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Strategic Marketing</a></li>
+                            <li><a href="#services">Creative Design</a></li>
+                            <li><a href="#services">Technical Solutions</a></li>
+                            <li><a href="#services">SEO & Automation</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Contact</h4>
+                        <div class="footer-contact">
+                            <div class="footer-contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>hello@flymize.com</span>
+                            </div>
+                            <div class="footer-contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>+1 (555) 123-4567</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2024 Flymize. All rights reserved.</p>
+                    <div class="footer-links">
+                        <a href="#">Privacy</a>
+                        <a href="#">Terms</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal" onclick="document.getElementById('contactModal').classList.remove('active'); document.body.style.overflow='auto';">&times;</button>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <h1>Send a message.</h1>
+                    <p>We're here to answer any question you may have.</p>
+                    
+                    <div class="contact-sections">
+                        <div class="contact-section">
+                            <h4>careers</h4>
+                            <p>Would you like to join our growing team?</p>
+                            <a href="mailto:Hr@adymize.com">Hr@adymize.com</a>
+                        </div>
+                        
+                        <div class="contact-section">
+                            <h4>Feedbacks</h4>
+                            <p>Have a project in mind?</p>
+                            <a href="mailto:Hi@adymize.com">Hi@adymize.com</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="modal-right">
+                    <form class="modal-form" id="modalContactForm">
+                        <div class="form-row">
+                            <input type="text" placeholder="Your name?" required>
+                            <input type="email" placeholder="Your Email address?" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="tel" placeholder="Your Phone Number?" required>
+                            <input type="text" placeholder="What's your budget?" required>
+                        </div>
+                        <div class="form-row full-width">
+                            <input type="url" placeholder="Your Website?">
+                        </div>
+                        <div class="form-row full-width">
+                            <textarea placeholder="Tell us about your project" rows="4" required></textarea>
+                        </div>
+                        <button type="submit" class="send-message-btn">SEND MESSAGE</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Maintenance Modal -->
+    <div id="maintenanceModal" class="maintenance-modal active">
+        <div class="maintenance-content">
+            <div class="maintenance-icon">
+                <i class="fas fa-tools"></i>
+            </div>
+            <h2>🚧 Website Under Maintenance</h2>
+            <p>We're currently improving your experience. The website is fully functional, but you may notice some updates being made.</p>
+            <button class="maintenance-close" onclick="document.getElementById('maintenanceModal').classList.remove('active')">Continue Browsing</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
