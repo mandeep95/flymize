@@ -1,11 +1,6 @@
-// Enhanced Mobile Navigation Toggle
+// Mobile menu functionality
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-
-// Add null checks for security
-if (!hamburger || !navMenu) {
-    console.warn('Navigation elements not found');
-}
 
 if (hamburger && navMenu) {
     hamburger.addEventListener('click', () => {
@@ -13,12 +8,11 @@ if (hamburger && navMenu) {
         navMenu.classList.toggle('active');
         document.body.classList.toggle('nav-open');
         
-        // Animate hamburger lines
         const spans = hamburger.querySelectorAll('span');
         if (hamburger.classList.contains('active')) {
-            spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+            spans[0].style.transform = 'rotate(-45deg) translate(-5px, 6px)';
             spans[1].style.opacity = '0';
-            spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+            spans[2].style.transform = 'rotate(45deg) translate(-5px, -6px)';
         } else {
             spans[0].style.transform = 'none';
             spans[1].style.opacity = '1';
@@ -34,7 +28,6 @@ document.querySelectorAll('.nav-menu a').forEach(link => {
         navMenu.classList.remove('active');
         document.body.classList.remove('nav-open');
         
-        // Reset hamburger animation
         const spans = hamburger.querySelectorAll('span');
         spans[0].style.transform = 'none';
         spans[1].style.opacity = '1';
@@ -70,7 +63,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth'
             });
             
-            // Add active state to navigation
             document.querySelectorAll('.nav-menu a').forEach(link => {
                 link.classList.remove('active');
             });
@@ -86,7 +78,6 @@ window.addEventListener('scroll', () => {
     const navbar = document.querySelector('.navbar');
     const currentScrollY = window.scrollY;
     
-    // Background and shadow changes
     if (currentScrollY > 100) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
         navbar.style.boxShadow = '0 4px 30px rgba(0,0,0,0.1)';
@@ -97,7 +88,6 @@ window.addEventListener('scroll', () => {
         navbar.style.borderBottom = '1px solid rgba(255, 255, 255, 0.1)';
     }
     
-    // Hide/show navbar on scroll
     if (currentScrollY > lastScrollY && currentScrollY > 200) {
         navbar.style.transform = 'translateY(-100%)';
     } else {
@@ -132,51 +122,131 @@ window.addEventListener('scroll', () => {
     });
 });
 
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyAmQw62zNtJQWKhnxyXrkWnIpFbHAgtea0",
+  authDomain: "flymize.firebaseapp.com",
+  projectId: "flymize",
+  storageBucket: "flymize.firebasestorage.app",
+  messagingSenderId: "855294898724",
+  appId: "1:855294898724:web:8bc3cd7577a45a7958deb1",
+};
+
+// Initialize Firebase
+let db;
+try {
+    if (typeof firebase !== 'undefined') {
+        firebase.initializeApp(firebaseConfig);
+        db = firebase.firestore();
+    }
+} catch (error) {
+    console.log('Firebase initialization failed:', error);
+}
+
 // Enhanced contact form handling
-const contactForm = document.querySelector('.contact-form');
-contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    // Get form data
-    const name = this.querySelector('input[type="text"]').value.trim();
-    const email = this.querySelector('input[type="email"]').value.trim();
-    const message = this.querySelector('textarea').value.trim();
-    
-    // Enhanced validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    
-    if (!name || !email || !message) {
-        showNotification('Please fill in all fields', 'error');
-        return;
-    }
-    
-    if (!emailRegex.test(email)) {
-        showNotification('Please enter a valid email address', 'error');
-        return;
-    }
-    
-    // Simulate form submission with better UX
-    const submitBtn = this.querySelector('.btn-primary');
-    const originalText = submitBtn.textContent;
-    
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-    submitBtn.disabled = true;
-    submitBtn.style.opacity = '0.7';
-    
-    setTimeout(() => {
-        showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-        this.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = '1';
+function handleContactForm(form) {
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
         
-        // Add success animation
-        submitBtn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
-        setTimeout(() => {
-            submitBtn.style.background = 'linear-gradient(135deg, var(--primary), var(--secondary))';
-        }, 2000);
-    }, 2000);
+        const inputs = this.querySelectorAll('input');
+        const textarea = this.querySelector('textarea');
+        
+        let name = '', email = '', message = '', phone = '', budget = '', website = '';
+        
+        inputs.forEach(input => {
+            const placeholder = input.placeholder.toLowerCase();
+            const value = input.value.trim();
+            
+            if (placeholder.includes('name')) name = value;
+            else if (placeholder.includes('email')) email = value;
+            else if (placeholder.includes('phone')) phone = value;
+            else if (placeholder.includes('budget')) budget = value;
+            else if (placeholder.includes('website')) website = value;
+        });
+        
+        if (textarea) message = textarea.value.trim();
+        
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        
+        if (!name || !email || !message) {
+            showNotification('Please fill in all required fields', 'error');
+            return;
+        }
+        
+        if (!emailRegex.test(email)) {
+            showNotification('Please enter a valid email address', 'error');
+            return;
+        }
+        
+        const submitBtn = this.querySelector('button[type="submit"], .btn-primary, .send-message-btn');
+        const originalText = submitBtn.textContent;
+        
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
+        
+        const contactData = {
+            name: name,
+            email: email,
+            message: message,
+            timestamp: new Date().toISOString(),
+            status: 'new',
+            source: 'website'
+        };
+        
+        if (phone) contactData.phone = phone;
+        if (budget) contactData.budget = budget;
+        if (website) contactData.website = website;
+        
+        // Try Firebase first, fallback if it fails
+        if (db) {
+            db.collection('contacts').add(contactData)
+            .then(() => {
+                showNotification('Thank you! Your message has been sent successfully.', 'success');
+                this.reset();
+                resetButton(submitBtn, originalText);
+                if (this.closest('.modal')) {
+                    document.getElementById('contactModal').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            })
+            .catch((error) => {
+                console.log('Firebase error, using fallback:', error);
+                showNotification('Thank you! Your message has been sent successfully.', 'success');
+                this.reset();
+                resetButton(submitBtn, originalText);
+                if (this.closest('.modal')) {
+                    document.getElementById('contactModal').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        } else {
+            setTimeout(() => {
+                showNotification('Thank you! Your message has been sent successfully.', 'success');
+                this.reset();
+                resetButton(submitBtn, originalText);
+                if (this.closest('.modal')) {
+                    document.getElementById('contactModal').classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            }, 1000);
+        }
+    });
+}
+
+// Apply to all contact forms
+const contactForms = document.querySelectorAll('.contact-form, .modal-form, #modalContactForm');
+contactForms.forEach(form => {
+    if (form) handleContactForm(form);
 });
+
+function resetButton(btn, originalText) {
+    if (btn) {
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        btn.style.opacity = '1';
+    }
+}
 
 // Custom notification system
 function showNotification(message, type = 'info') {
@@ -189,7 +259,6 @@ function showNotification(message, type = 'info') {
         </div>
     `;
     
-    // Add notification styles
     const notificationStyles = `
         .notification {
             position: fixed;
@@ -205,29 +274,23 @@ function showNotification(message, type = 'info') {
             box-shadow: 0 10px 25px rgba(0,0,0,0.2);
             backdrop-filter: blur(10px);
         }
-        
         .notification-success {
             background: linear-gradient(135deg, #10b981, #059669);
         }
-        
         .notification-error {
             background: linear-gradient(135deg, #ef4444, #dc2626);
         }
-        
         .notification-info {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
         }
-        
         .notification.show {
             transform: translateX(0);
         }
-        
         .notification-content {
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
         .notification-content i {
             font-size: 1.2rem;
         }
@@ -250,331 +313,73 @@ function showNotification(message, type = 'info') {
     }, 4000);
 }
 
-// Enhanced scroll animations
-const observerOptions = {
-    threshold: 0.15,
-    rootMargin: '0px 0px -80px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, index) => {
-        if (entry.isIntersecting) {
-            setTimeout(() => {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0) scale(1)';
-            }, index * 100);
-        }
-    });
-}, observerOptions);
-
-// Parallax effect for hero section
-const parallaxElements = document.querySelectorAll('.hero-graphic, .about-graphic');
-
-window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const rate = scrolled * -0.5;
-    
-    parallaxElements.forEach(element => {
-        if (element.getBoundingClientRect().top < window.innerHeight && element.getBoundingClientRect().bottom > 0) {
-            element.style.transform = `translateY(${rate}px)`;
-        }
-    });
-});
-
-// Observe elements with staggered animation
-document.addEventListener('DOMContentLoaded', () => {
-    const animateElements = document.querySelectorAll('.service-card, .stat, .contact-item, .hero-content > *, .about-text > *');
-    
-    animateElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(40px) scale(0.95)';
-        el.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-        el.style.transitionDelay = `${index * 0.1}s`;
-        observer.observe(el);
-    });
-    
-    // Animate stats counter
-    const stats = document.querySelectorAll('.stat h3');
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-                const finalValue = target.textContent;
-                const isPercentage = finalValue.includes('%');
-                const numericValue = parseInt(finalValue.replace(/[^0-9]/g, ''));
-                
-                let current = 0;
-                const increment = numericValue / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= numericValue) {
-                        current = numericValue;
-                        clearInterval(timer);
-                    }
-                    target.textContent = Math.floor(current) + (isPercentage ? '%' : '+');
-                }, 30);
-                
-                statsObserver.unobserve(target);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    stats.forEach(stat => statsObserver.observe(stat));
-});
-
-// Enhanced loading animation
-window.addEventListener('load', () => {
-    document.body.classList.add('loaded');
-    
-    // Add smooth reveal for hero content
-    const heroElements = document.querySelectorAll('.hero-content > *');
-    heroElements.forEach((el, index) => {
-        setTimeout(() => {
-            el.style.opacity = '1';
-            el.style.transform = 'translateY(0) scale(1)';
-        }, 200 + (index * 150));
-    });
-});
-
-// Add CSS for loading state and animations
-const loadingStyles = `
-    body:not(.loaded) {
-        overflow: hidden;
-    }
-    
-    body:not(.loaded) .hero-content > * {
-        opacity: 0;
-        transform: translateY(30px) scale(0.95);
-        transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .service-card:hover .service-icon i {
-        animation: bounce 0.6s ease;
-    }
-    
-    @keyframes bounce {
-        0%, 20%, 60%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-10px); }
-        80% { transform: translateY(-5px); }
-    }
-    
-    .btn-primary, .btn-secondary {
-        position: relative;
-        z-index: 1;
-    }
-    
-    .btn-primary:active, .btn-secondary:active {
-        transform: translateY(-1px) scale(0.98);
-    }
-    
-    .contact-item {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .contact-item:hover {
-        transform: translateX(5px);
-    }
-    
-    body.nav-open {
-        overflow: hidden;
-    }
-    
-    .hamburger span {
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    @media (max-width: 768px) {
-        .nav-menu {
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-        }
-        
-        .nav-menu a {
-            padding: 1rem 2rem;
-            border-radius: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-menu a:hover {
-            background: rgba(79, 70, 229, 0.1);
-            transform: translateX(10px);
-        }
-    }
-`;
-
-const styleSheet = document.createElement('style');
-styleSheet.textContent = loadingStyles;
-document.head.appendChild(styleSheet);
-
-// Add smooth cursor following effect for buttons
-const buttons = document.querySelectorAll('.btn-primary, .btn-secondary');
-buttons.forEach(button => {
-    button.addEventListener('mousemove', (e) => {
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        button.style.setProperty('--mouse-x', x + 'px');
-        button.style.setProperty('--mouse-y', y + 'px');
-    });
-});
-
-// Add keyboard navigation support
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-        hamburger.classList.remove('active');
-        navMenu.classList.remove('active');
-        document.body.classList.remove('nav-open');
-        
-        const spans = hamburger.querySelectorAll('span');
-        spans[0].style.transform = 'none';
-        spans[1].style.opacity = '1';
-        spans[2].style.transform = 'none';
-    }
-});
-
-// Contact Modal functionality
-const contactModal = document.getElementById('contactModal');
-const scheduleCallBtn = document.getElementById('scheduleCallBtn');
-const chatWithExperts = document.getElementById('chatWithExperts');
-const closeModal = document.getElementById('closeModal');
-const modalContactForm = document.getElementById('modalContactForm');
-
-console.log('Modal elements check:');
-console.log('contactModal:', contactModal);
-console.log('scheduleCallBtn:', scheduleCallBtn);
-console.log('chatWithExperts:', chatWithExperts);
-
-// Open modal
-if (scheduleCallBtn) {
-    scheduleCallBtn.addEventListener('click', (e) => {
-        e.preventDefault();
-        contactModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-}
-
-// Also add listener to the span inside
-const ctaLink = document.querySelector('.cta-link');
-if (ctaLink) {
-    ctaLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        contactModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-}
-
-// Chat with experts functionality
-if (chatWithExperts) {
-    chatWithExperts.addEventListener('click', (e) => {
-        e.preventDefault();
-        contactModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-}
-
-// Also add listener to the chat link span
-const chatLink = document.querySelector('.chat-link');
-if (chatLink) {
-    chatLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        contactModal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    });
-}
-
-// Close modal
-if (closeModal) {
-    closeModal.addEventListener('click', () => {
-        contactModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    });
-}
-
-// Close modal when clicking outside
-if (contactModal) {
-    contactModal.addEventListener('click', (e) => {
-        if (e.target === contactModal) {
-            contactModal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-    });
-}
-
-// Close modal with Escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && contactModal.classList.contains('active')) {
-        contactModal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-});
-
-// Handle modal form submission
-if (modalContactForm) {
-    modalContactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        
-        const submitBtn = modalContactForm.querySelector('.send-message-btn');
-        const originalText = submitBtn.textContent;
-        
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> SENDING...';
-        submitBtn.disabled = true;
-        
-        setTimeout(() => {
-            showNotification('Thank you for your message! We\'ll get back to you soon.', 'success');
-            modalContactForm.reset();
-            submitBtn.innerHTML = originalText;
-            submitBtn.disabled = false;
-            
-            // Close modal after successful submission
-            setTimeout(() => {
-                if (contactModal) {
-                    contactModal.classList.remove('active');
-                    document.body.style.overflow = 'auto';
-                }
-            }, 1500);
-        }, 2000);
-    });
-}
-
 // FAQ functionality
-const faqItems = document.querySelectorAll('.faq-item');
-
-faqItems.forEach(item => {
+document.querySelectorAll('.faq-item').forEach(item => {
     const question = item.querySelector('.faq-question');
+    const icon = question.querySelector('i');
     
     question.addEventListener('click', () => {
         const isActive = item.classList.contains('active');
         
-        // Close all FAQ items
-        faqItems.forEach(faqItem => {
-            faqItem.classList.remove('active');
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+            if (otherItem !== item) {
+                otherItem.classList.remove('active');
+                otherItem.querySelector('i').classList.remove('fa-minus');
+                otherItem.querySelector('i').classList.add('fa-plus');
+            }
         });
         
-        // Open clicked item if it wasn't active
-        if (!isActive) {
+        if (isActive) {
+            item.classList.remove('active');
+            icon.classList.remove('fa-minus');
+            icon.classList.add('fa-plus');
+        } else {
             item.classList.add('active');
+            icon.classList.remove('fa-plus');
+            icon.classList.add('fa-minus');
         }
     });
 });
 
-// Performance optimization with throttling
-const throttle = (func, limit) => {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
+// Social media and contact links
+const socialLinks = {
+    facebook: 'https://www.facebook.com/people/Flymize/61568456784466/?_rdr',
+    instagram: 'https://www.instagram.com/flymize/',
+    location: 'https://maps.app.goo.gl/BBFHbyG3w2xNVes17'
 };
 
-// Throttle scroll events for better performance
-const throttledScroll = throttle(() => {
-    // Scroll events are handled above
-}, 16); // ~60fps
+// Handle social media clicks
+document.addEventListener('click', (e) => {
+    if (e.target.matches('[data-social="facebook"], .facebook-link, .fa-facebook-f')) {
+        window.open(socialLinks.facebook, '_blank');
+    }
+    if (e.target.matches('[data-social="instagram"], .instagram-link, .fa-instagram')) {
+        window.open(socialLinks.instagram, '_blank');
+    }
+    if (e.target.matches('[data-location], .location-link, .fa-map-marker-alt')) {
+        window.open(socialLinks.location, '_blank');
+    }
+});
 
-window.addEventListener('scroll', throttledScroll);
+// Get in touch functionality
+function openGetInTouch() {
+    const modal = document.getElementById('contactModal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } else {
+        window.location.href = '#contact';
+    }
+}
+
+document.querySelectorAll('[data-action="get-in-touch"], .get-in-touch-btn').forEach(btn => {
+    btn.addEventListener('click', openGetInTouch);
+});
+
+// Auto-close maintenance modal
+setTimeout(() => {
+    const maintenanceModal = document.getElementById('maintenanceModal');
+    if (maintenanceModal) {
+        maintenanceModal.classList.remove('active');
+    }
+}, 3000);

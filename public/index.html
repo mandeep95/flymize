@@ -351,21 +351,21 @@
                             <p>hello@flymize.com</p>
                             <span class="contact-label">Drop us a line anytime</span>
                         </div>
-                        <div class="contact-card">
+                        <div class="contact-card" data-action="get-in-touch">
                             <div class="contact-icon">
-                                <i class="fas fa-phone"></i>
+                                <i class="fas fa-comments"></i>
                             </div>
-                            <h4>Call Us</h4>
-                            <p>+1 (555) 123-4567</p>
-                            <span class="contact-label">Mon-Fri 9AM-6PM</span>
+                            <h4>Get In Touch</h4>
+                            <p>Contact Form</p>
+                            <span class="contact-label">Quick & Easy</span>
                         </div>
-                        <div class="contact-card">
+                        <div class="contact-card" data-location>
                             <div class="contact-icon">
                                 <i class="fas fa-map-marker-alt"></i>
                             </div>
                             <h4>Visit Us</h4>
-                            <p>New York, NY</p>
-                            <a href="https://share.google/QLRHnURSTLrFgbC6a" target="_blank" class="contact-label">Get Directions</a>
+                            <p>Our Location</p>
+                            <span class="contact-label">Get Directions</span>
                         </div>
                     </div>
 
@@ -383,10 +383,10 @@
                         <h3>Flymize</h3>
                         <p>All-in-one business solutions for modern companies</p>
                         <div class="social-links">
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-linkedin"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a data-social="facebook"><i class="fab fa-facebook"></i></a>
+                            <a data-social="instagram"><i class="fab fa-instagram"></i></a>
+                            <a data-location><i class="fas fa-map-marker-alt"></i></a>
+                            <a data-action="get-in-touch"><i class="fas fa-envelope"></i></a>
                         </div>
                     </div>
                     <div class="footer-section">
@@ -405,9 +405,9 @@
                                 <i class="fas fa-envelope"></i>
                                 <span>hello@flymize.com</span>
                             </div>
-                            <div class="footer-contact-item">
-                                <i class="fas fa-phone"></i>
-                                <span>+1 (555) 123-4567</span>
+                            <div class="footer-contact-item" data-action="get-in-touch">
+                                <i class="fas fa-comments"></i>
+                                <span>Contact Form</span>
                             </div>
                         </div>
                     </div>
@@ -486,6 +486,9 @@
         </div>
     </div>
 
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

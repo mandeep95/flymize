@@ -1703,18 +1703,20 @@ body {
 .faq-answer {
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+    padding: 0;
 }
 
 .faq-item.active .faq-answer {
-    max-height: 200px;
+    max-height: 300px;
+    padding: 1rem 0 1.5rem 0;
 }
 
 .faq-answer p {
-    padding: 0 0 1.5rem 0;
     color: #64748b;
-    line-height: 1.6;
+    line-height: 1.7;
     margin: 0;
+    font-size: 1rem;
 }
 
 @media (max-width: 768px) {
